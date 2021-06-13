@@ -1,13 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, JoinColumn, OneToOne } from 'typeorm';
+import { OrdersEntity } from '../orders/orders.entity';
+import { ItemsEntity } from '../items/items.entity';
 
 @Entity('orders_items')
 export class OrdersItemsEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column('text')
+  @OneToOne(() => OrdersEntity, { nullable: true, primary: true })
+  @JoinColumn({ name: 'order_id', referencedColumnName: 'id' })
   order_id: string;
 
-  @Column('text')
-  item_id: number;
+  @OneToOne(() => ItemsEntity, { nullable: true })
+  @JoinColumn({ name: 'item_id', referencedColumnName: 'id' })
+  item_id: unknown;
 }

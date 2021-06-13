@@ -1,12 +1,20 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { CustomersEntity } from '../customers/customers.entity';
 
 @Entity('orders')
 export class OrdersEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: string;
 
-  @Column('text')
-  customer_id: string;
+  @OneToOne(() => CustomersEntity)
+  @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
+  customer: CustomersEntity;
 
   @Column('text')
   date: string;

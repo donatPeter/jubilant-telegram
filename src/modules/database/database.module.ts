@@ -19,7 +19,7 @@ import { OrdersItemsEntity } from './repositories/order_items/orders-items.entit
       type: 'sqlite',
       database: 'db',
       entities: [OrdersEntity, ItemsEntity, CustomersEntity, OrdersItemsEntity],
-      synchronize: true,
+      synchronize: false,
     }),
   ],
   providers: [],
