@@ -1,8 +1,8 @@
 import {
-  Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CustomersEntity } from '../customers/customers.entity';
@@ -12,10 +12,10 @@ export class OrdersEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @OneToOne(() => CustomersEntity)
+  @ManyToOne(() => CustomersEntity)
   @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
   customer: CustomersEntity;
 
-  @Column('text')
+  @CreateDateColumn('date')
   date: string;
 }
