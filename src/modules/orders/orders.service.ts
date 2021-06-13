@@ -8,10 +8,16 @@ export class OrdersService {
     private readonly ordersRepository: OrdersRepository,
   ) {}
 
+  /**
+   * Returns every order
+   */
   public getOrders() {
     return this.ordersRepository.find();
   }
 
+  /**
+   * Returns an order by id or throws an error if order is not found
+   */
   public async getOrder(id: string) {
     try {
       return await this.ordersRepository.findOne(id);
@@ -20,6 +26,9 @@ export class OrdersService {
     }
   }
 
+  /**
+   * Deletes an order by id or throws an error if order is not found
+   */
   public async deleteOrder(id: string) {
     try {
       await this.ordersRepository.findOne(id);
