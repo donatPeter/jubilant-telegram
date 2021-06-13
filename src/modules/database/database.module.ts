@@ -23,6 +23,12 @@ import { OrdersItemsEntity } from './repositories/order_items/orders-items.entit
     }),
   ],
   providers: [],
-  exports: [TypeOrmModule],
+  exports: [
+    TypeOrmModule,
+    OrdersRepositoryModule,
+    ItemsRepositoryModule,
+    CustomersRepositoryModule,
+    OrdersItemsRepositoryModule,
+  ],
 })
 export class DatabaseModule {}
