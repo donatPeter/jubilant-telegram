@@ -13,4 +13,12 @@ export class OrdersRepository {
   public find() {
     return this.repository.find();
   }
+
+  public findOne(id: string) {
+    return this.repository.findOneOrFail({ where: { id } });
+  }
+
+  public delete(id: string) {
+    return this.repository.delete({ id });
+  }
 }
