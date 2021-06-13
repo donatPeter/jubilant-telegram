@@ -9,4 +9,8 @@ export class OrdersRepository {
     @InjectRepository(OrdersEntity)
     private readonly repository: Repository<OrdersEntity>,
   ) {}
+
+  public find() {
+    return this.repository.find();
+  }
 }
