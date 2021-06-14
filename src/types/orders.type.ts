@@ -1,4 +1,4 @@
-import { IsArray, IsDefined, IsUUID } from 'class-validator';
+import { ArrayMinSize, IsArray, IsDefined, IsUUID } from 'class-validator';
 
 export class GetOrderRequest {
   @IsUUID()
@@ -7,7 +7,12 @@ export class GetOrderRequest {
 }
 
 export class CreateOrderRequest {
+  @IsUUID()
+  @IsDefined()
+  public readonly customerId!: string;
+
   @IsArray()
+  @ArrayMinSize(1)
   @IsDefined()
   @IsUUID('all', { each: true })
   public readonly itemIds!: string[];

@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, Repository } from 'typeorm';
-import { CustomersEntity } from './customers.entity';
+import { CustomerEntity } from './customer.entity';
 
 @Injectable()
 export class CustomersRepository {
   constructor(
-    @InjectRepository(CustomersEntity)
-    private readonly repository: Repository<CustomersEntity>,
+    @InjectRepository(CustomerEntity)
+    private readonly repository: Repository<CustomerEntity>,
   ) {}
 
   public find() {
@@ -15,7 +15,11 @@ export class CustomersRepository {
   }
 
   public async findOne(id: string) {
-    return this.repository.findOneOrFail({ where: { id } });
+    try {
+      return await this.repository.findOneOrFail({ where: { id } });
+    } catch {
+      throw new NotFoundException();
+    }
   }
 
   public delete(id: string) {
@@ -23,7 +27,7 @@ export class CustomersRepository {
   }
 
   public save(email: string, given_name: string, family_name: string) {
-    return this.repository.save<DeepPartial<CustomersEntity>>({
+    return this.repository.save<DeepPartial<CustomerEntity>>({
       email,
       given_name,
       family_name,
@@ -36,7 +40,7 @@ export class CustomersRepository {
     given_name: string,
     family_name: string,
   ) {
-    return this.repository.save<DeepPartial<CustomersEntity>>({
+    return this.repository.save<DeepPartial<CustomerEntity>>({
       id,
       email,
       given_name,

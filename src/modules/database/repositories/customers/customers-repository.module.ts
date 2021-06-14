@@ -1,6 +1,6 @@
 import { ClassProvider, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CustomersEntity } from './customers.entity';
+import { CustomerEntity } from './customer.entity';
 import { CustomersRepository } from './customers.repository';
 
 const customersRepositoryProvider: ClassProvider = {
@@ -11,7 +11,7 @@ const customersRepositoryProvider: ClassProvider = {
 @Module({
   controllers: [],
   providers: [customersRepositoryProvider],
-  imports: [TypeOrmModule.forFeature([CustomersEntity])],
+  imports: [TypeOrmModule.forFeature([CustomerEntity])],
   exports: [TypeOrmModule, customersRepositoryProvider],
 })
 export class CustomersRepositoryModule {}

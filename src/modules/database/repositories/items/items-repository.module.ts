@@ -1,6 +1,6 @@
 import { ClassProvider, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ItemsEntity } from './items.entity';
+import { ItemEntity } from './item.entity';
 import { ItemsRepository } from './items.repository';
 
 const itemsRepositoryProvider: ClassProvider = {
@@ -11,7 +11,7 @@ const itemsRepositoryProvider: ClassProvider = {
 @Module({
   controllers: [],
   providers: [itemsRepositoryProvider],
-  imports: [TypeOrmModule.forFeature([ItemsEntity])],
+  imports: [TypeOrmModule.forFeature([ItemEntity])],
   exports: [TypeOrmModule, itemsRepositoryProvider],
 })
 export class ItemsRepositoryModule {}

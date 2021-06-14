@@ -5,16 +5,16 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { CustomersEntity } from '../customers/customers.entity';
+import { CustomerEntity } from '../customers/customer.entity';
 
 @Entity('orders')
-export class OrdersEntity {
+export class OrderEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @ManyToOne(() => CustomersEntity)
+  @ManyToOne(() => CustomerEntity)
   @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
-  customer: CustomersEntity;
+  customer: CustomerEntity;
 
   @CreateDateColumn('date')
   date: string;

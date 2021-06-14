@@ -1,14 +1,14 @@
 import { Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { OrdersEntity } from '../orders/orders.entity';
-import { ItemsEntity } from '../items/items.entity';
+import { OrderEntity } from '../orders/order.entity';
+import { ItemEntity } from '../items/item.entity';
 
 @Entity('orders_items')
 export class OrdersItemsEntity {
-  @ManyToOne(() => OrdersEntity, { nullable: true, primary: true })
+  @ManyToOne(() => OrderEntity, { nullable: true, primary: true })
   @JoinColumn({ name: 'order_id', referencedColumnName: 'id' })
-  order_id: string;
+  order: OrderEntity;
 
-  @ManyToOne(() => ItemsEntity, { nullable: true })
+  @ManyToOne(() => ItemEntity, { nullable: true })
   @JoinColumn({ name: 'item_id', referencedColumnName: 'id' })
-  item_id: unknown;
+  item: ItemEntity;
 }

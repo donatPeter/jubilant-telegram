@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { OrdersEntity } from './repositories/orders/orders.entity';
+import { OrderEntity } from './repositories/orders/order.entity';
 import { OrdersRepositoryModule } from './repositories/orders/orders-repository.module';
 import { ItemsRepositoryModule } from './repositories/items/items-repository.module';
-import { ItemsEntity } from './repositories/items/items.entity';
+import { ItemEntity } from './repositories/items/item.entity';
 import { CustomersRepositoryModule } from './repositories/customers/customers-repository.module';
-import { CustomersEntity } from './repositories/customers/customers.entity';
+import { CustomerEntity } from './repositories/customers/customer.entity';
 import { OrdersItemsRepositoryModule } from './repositories/order_items/orders-items-repository.module';
 import { OrdersItemsEntity } from './repositories/order_items/orders-items.entity';
 
@@ -18,7 +18,7 @@ import { OrdersItemsEntity } from './repositories/order_items/orders-items.entit
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db',
-      entities: [OrdersEntity, ItemsEntity, CustomersEntity, OrdersItemsEntity],
+      entities: [OrderEntity, ItemEntity, CustomerEntity, OrdersItemsEntity],
       synchronize: false,
     }),
   ],

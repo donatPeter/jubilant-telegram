@@ -1,16 +1,16 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('items')
-export class ItemsEntity {
+@Entity('customers')
+export class CustomerEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column('text')
-  name: string;
-
-  @Column('real')
-  cost: number;
+  email: string;
 
   @Column('text')
-  supplier: string;
+  given_name: string;
+
+  @Column('text')
+  family_name: string;
 }
