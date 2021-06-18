@@ -21,7 +21,7 @@ export class OrdersController {
     return this.service.deleteOrder(id);
   }
 
-  @Post()
+  @Post('order')
   public createOrder(@Body() { customerId, itemIds }: CreateOrderRequest) {
     return this.service.createOrder(customerId, itemIds);
   }

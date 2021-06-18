@@ -1,5 +1,5 @@
 import {
-  CreateDateColumn,
+  Column,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -9,13 +9,13 @@ import { CustomerEntity } from '../customers/customer.entity';
 
 @Entity('orders')
 export class OrderEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @ManyToOne(() => CustomerEntity)
   @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
   customer: CustomerEntity;
 
-  @CreateDateColumn('date')
+  @Column('text')
   date: string;
 }

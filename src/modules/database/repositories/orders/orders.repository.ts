@@ -12,7 +12,7 @@ export class OrdersRepository {
   ) {}
 
   public find() {
-    return this.repository.find();
+    return this.repository.find({ relations: ['customer'] });
   }
 
   public findOne(id: string) {
@@ -24,6 +24,14 @@ export class OrdersRepository {
   }
 
   public save(customer: CustomerEntity) {
-    return this.repository.save<DeepPartial<OrderEntity>>({ customer });
+    return this.repository.save<DeepPartial<OrderEntity>>({
+      customer,
+      date: this.getDateString(),
+    });
   }
+
+  private getDateString = () =>
+    new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60 * 1000)
+      .toISOString()
+      .split('T')[0];
 }
